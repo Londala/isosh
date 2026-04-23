@@ -83,4 +83,10 @@ The files in a directory can be printed using the `tree` command or the standard
 
 Make new directories with `newdir`, and new files with `newf`. They default to standard permissions, but these can be overridden by setting the `[mode]` argument.
 
+## Persistance
 
+The logged in user is persisted between sessions, and will automatically log in when a new session begins.
+
+User defined variables are also persisted between sessions, saved in seperate files per user.
+
+The files containing the persisted values can be found in the `$HOME/.isosh` directory.
