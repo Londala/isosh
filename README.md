@@ -26,7 +26,7 @@ gcc *.c -o isosh -lreadline -DDEBUG=3
 
 ## Built-in Utilities and Commands
 
-These commands are built into the terminal directly.
+The following commands are built into the terminal directly. All other commands are passed through and handled by searching the path environment variable or relative directory.
 
 `<>` args are required. `[]` args are optional.
 
