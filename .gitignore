@@ -1,3 +1,7 @@
+# Binaries
+isosh
+!isosh.*
+
 # Prerequisites
 *.d
 
