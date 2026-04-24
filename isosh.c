@@ -189,9 +189,6 @@ static int parse_input(char* input, char** parsedCmd, char** pipedCmd)
         parse_commands(input, parsedCmd);
     }
 
-    // TODO: user command ownership
-    // if (!user_owns_command(parsedCmd)) {}
-
     return piped; // 0 if not piped, 1 if piped
 }
 
@@ -242,7 +239,7 @@ static int execute_piped_command(char** parsedCmd, char** pipedCmd)
         perror("Fork failed");
         return 1;
     } else if (pid1 == 0) {
-        // first child: stdout → pipe write end
+        // first child: stdout to pipe write end
         close(pipefd[0]);
         dup2(pipefd[1], STDOUT_FILENO);
         close(pipefd[1]);
@@ -257,7 +254,7 @@ static int execute_piped_command(char** parsedCmd, char** pipedCmd)
         perror("Fork failed");
         return 1;
     } else if (pid2 == 0) {
-        // second child: stdin ← pipe read end, stdout stays as terminal
+        // second child: stdin from pipe read end, stdout stays as terminal
         close(pipefd[1]);
         dup2(pipefd[0], STDIN_FILENO);
         close(pipefd[0]);
@@ -267,7 +264,7 @@ static int execute_piped_command(char** parsedCmd, char** pipedCmd)
         }
     }
 
-    // parent: close both pipe ends so children can detect EOF, then wait
+    // parent: close both pipe ends
     close(pipefd[0]);
     close(pipefd[1]);
     wait(NULL);
@@ -275,7 +272,7 @@ static int execute_piped_command(char** parsedCmd, char** pipedCmd)
     wait(NULL);
     DEBUG_PRINT("Second child done\n");
 
-    DEBUG_PRINT("Piped command executed successfully\n");
+    DEBUG_PRINT("Piped command exited successfully\n");
     return 0;
 }
 
