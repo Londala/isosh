@@ -19,6 +19,11 @@ static void get_session_path(char* buf, size_t len)
     if (home == NULL) {
         home = "/tmp";
     }
+
+    char dir[512];
+    snprintf(dir, sizeof(dir), "%s" ISOSH_DIR, home);
+    mkdir(dir, 0700);
+
     snprintf(buf, len, "%s%s/%s", home, ISOSH_DIR, USER_SESSION_FILENAME);
 }
 
