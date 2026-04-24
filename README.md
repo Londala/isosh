@@ -61,7 +61,7 @@ User Management Commands:
 
 Pipe commands using `|` character.
 
-Example: `ls | grep *.txt`
+Example: `ls -l | grep .txt`
 
 ## Users
 
