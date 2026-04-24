@@ -1,6 +1,10 @@
 # Binaries
 isosh
+isosh_d
+isosh_asan
 !isosh.*
+
+test_fs
 
 # Prerequisites
 *.d
